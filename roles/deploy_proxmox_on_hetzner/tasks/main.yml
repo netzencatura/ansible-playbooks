@@ -64,7 +64,7 @@
     - name: Gather IP Address & CIDR of eth0
       ansible.builtin.shell: |
         set -o pipefail
-        ip addr show {{ actual_interface_name }} | grep "inet\b" | awk '{print $2}'
+        ip addr show {{ actual_interface_name.stdout | trim }} | grep "inet\b" | awk '{print $2}'
       args:
         executable: /bin/bash
       register: ip_cidr
